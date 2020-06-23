@@ -7,11 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ItemCounterComponent implements OnInit {
   @Input() item: string;
-  quantidade = 0;
+  quantidade: number;
 
   constructor() { }
 
   ngOnInit() {
+    this.quantidade = parseInt(localStorage.getItem(this.item));
+    if (isNaN(this.quantidade)) {
+      this.quantidade = 0;
+    }
   }
 
   increment() {
