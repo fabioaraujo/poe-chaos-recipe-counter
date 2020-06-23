@@ -118,8 +118,13 @@
               "devServerTarget": "poe-chaos-recipe-counter:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "poe-chaos-recipe-counter"
 }
