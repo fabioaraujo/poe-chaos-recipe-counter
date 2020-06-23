@@ -1,4 +1,6 @@
+import { ItemCounterService } from './../item-counter.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-item-counter',
@@ -7,20 +9,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ItemCounterComponent implements OnInit {
   @Input() item: string;
-  quantidade: number;
+  quantidade;
 
-  constructor() { }
+  constructor(private itemCounter: ItemCounterService) { }
 
   ngOnInit() {
-    this.quantidade = parseInt(localStorage.getItem(this.item));
-    if (isNaN(this.quantidade)) {
-      this.quantidade = 0;
-    }
+    this.itemCounter.watchStorage().subscribe((data:string) => {
+      this.quantidade = this.itemCounter.getQuantidade(this.item);
+    });
+    this.quantidade = this.itemCounter.getQuantidade(this.item);
   }
 
   increment() {
-    this.quantidade++;
-    localStorage.setItem(this.item, this.quantidade.toString());
+    this.itemCounter.adicionaQuantidade(this.item);
   }
 
 }
