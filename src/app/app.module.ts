@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { ItemCounterComponent } from './item-counter/item-counter.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ItemCounterComponent
   ],
   imports: [
     BrowserModule
