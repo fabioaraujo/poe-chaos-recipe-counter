@@ -7,14 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vender-receita.component.css']
 })
 export class VenderReceitaComponent implements OnInit {
+  chaos: number;
 
   constructor(private itemCounter: ItemCounterService) { }
 
   ngOnInit() {
+    this.chaos = parseInt(localStorage.getItem('chaos_orbs'));
+    if (isNaN(this.chaos)) {
+      this.chaos = 0;
+    }
   }
 
   venderReceita(){
     this.itemCounter.venderReceita();
+    this.chaos += 2;
+    localStorage.setItem('chaos_orbs', this.chaos.toString());
   }
 
 }

@@ -9,6 +9,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ItemCounterComponent implements OnInit {
   @Input() item: string;
+  @Input() image: string;
   quantidade;
 
   constructor(private itemCounter: ItemCounterService) { }
